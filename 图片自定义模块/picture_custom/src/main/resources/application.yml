@@ -1,0 +1,32 @@
+server:
+  port: 8004
+  contextPath: /picture_custom
+  tomcat:
+    min-spare-threads: 50
+    max-threads: 200
+    uri-encoding: UTF-8
+    connection-timeout: 30000
+  
+mybatis:
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.boco.eoms.picture_custom.*.model
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
+    callSettersOnNulls: true
+
+spring:
+  #切换环境
+  profiles:
+    active: dev
+  session:
+    store-type: none
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+logging:
+  config:
+    classpath:logback.xml 
+    

@@ -1,0 +1,169 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box 
+}
+#app{
+  min-width:1349px;
+}
+ul{
+  list-style: none;
+}
+/*定义了滚动条整体样式；*/ 
+::-webkit-scrollbar{
+  width:10px;
+  height:10px;
+  background:transparent;
+  position:fixed!important;
+  top:0;
+  right:0  
+ } 
+ /*定义了滚动条滑块的样式*/
+ ::-webkit-scrollbar-thumb {
+       border-radius: 5px;
+       border-style: dashed;
+       background-color: rgb(153,153,153,0.4);
+       border-color: #e2242400;
+       border-width: 1.5px;
+       background-clip: padding-box;
+ }
+     
+     /*定义了轨道的样式*/ 
+ ::-webkit-scrollbar-track {/*滚动条里面轨道*/ 
+      background:transparent;
+   }
+
+
+
+/* 图标生成 */
+/* 表单通过element创建的标签样式 */
+.formRow .el-form-item{
+  margin:0;
+  border-radius:0;
+}
+.formRow .el-form-item__label{
+  color:#517bba;
+  background-color:#e7f1ff;
+  position:relative;
+  width:90px;
+  padding-left:10px;
+  text-align:left;
+  height:30px;
+  line-height:30px;
+}
+.formRow  .minWidth .el-form-item__label{
+   width:60px;
+}
+.formRow  .noWidth .el-form-item__label{
+  width:0;
+  overflow:hidden;
+  padding:0;
+  font-size:0;
+}
+.formRow .el-form-item__label:after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 100%;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom:6px solid transparent;
+  border-left: 6px solid #e7f1ff;
+  z-index:1;
+}
+.formRow .el-form-item__content{
+  height:30px;
+  line-height:30px; 
+}
+.formRow  .wholeWidth{
+  width:100%;
+}
+.formRow .halfWidth{
+  width:55.5%;
+}
+.formRow  .setWidth{
+  width:31%;
+}
+.formRow  .minWidth{
+  width:22%;  
+}
+.formRow  .noWidth{
+  width: 24.75%;
+}
+.formRow  .noWidth .el-input__inner{
+  padding-left:40px;
+}
+ #iconBorderCon .noWidth{
+  width:22%;
+} 
+.formRow .setWidth .el-form-item__content{
+  width:calc(100% - 90px);
+}
+.formRow .minWidth .el-form-item__content{
+  width:calc(100% - 60px);
+}
+.formRow .wholeWidth .el-form-item__content{
+  width:calc(100% - 95px);
+} 
+.formRow .halfWidth .el-form-item__content{
+  width:calc(100% - 90px);
+} 
+ #iconBorderCon .noWidth .el-form-item__content{
+  width:100%;
+} 
+#iconBorderCon .halfWidth .el-form-item__content,#iconBorderCon .minWidth .el-form-item__content{
+  border:1px solid #ccc;
+  padding:0 10px;
+  line-height:30px;
+  border-right-color:transparent;
+  border-left-color:transparent;
+}
+#iconBorderCon .minWidth .el-form-item__content{
+  border-right-color:#ccc;  
+}
+#iconBorderCon .el-slider__runway{
+  margin:12px 0;
+}
+.formRow .el-input__inner{
+  height:30px;
+  border-radius:0;
+  border-right-color:transparent;
+  border-left-color:transparent;
+}
+.formRow>div:last-of-type .el-input__inner{
+  border-right:1px solid #ccc;
+}
+.formRow .noWidth .el-input__inner{
+  border-left:1px solid #ccc;
+}
+#funBtns{
+  margin-top:20px;
+}
+#funBtns button{
+  float:right;
+  margin-left:20px;
+  width:100px;
+  height:30px;
+  line-height:6px;
+  border:1px solid #3c84f0;
+  color:#3c84f0;
+  background:#fff;
+}
+#funBtns button:hover{
+  background:#3c84f0;
+  color:#fff;
+}
+/* 颜色选择器的位置 */
+.colorCon .sp-replacer{
+	position:absolute;
+	top: 1px;
+  left: 6px;
+}
+/* 搜索框的样式 */
+#searchInput{
+	border:1px solid #ccc;
+  border-radius:4px;	
+  margin:10px 10px;
+}

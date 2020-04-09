@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.eoms.picture_custom.customMode.mapper.PictureDetailsMapper">
+ <resultMap id="BaseResultMap" type="com.boco.eoms.picture_custom.customMode.model.PictureDetails" >
+    <id column="ID"  property="id" jdbcType="VARCHAR" />
+	<id column="NAME"  property="name" jdbcType="VARCHAR" />
+	<result column="HEIGHT"  property="height" jdbcType="TIMESTAMP" />
+	<result column="WIDTH"  property="width" jdbcType="TIMESTAMP" />
+	<result column="BACKGROUND_COLOR"  property="background_color" jdbcType="VARCHAR" />
+	<result column="ICON_NAME"  property="icon_name" jdbcType="TIMESTAMP" />
+	<result column="ICON_LEFT_HEIGHT"  property="icon_left_height" jdbcType="VARCHAR" />
+	<result column="ICON_TOP_HEIGHT"  property="icon_top_height" jdbcType="VARCHAR" />
+	<result column="TEXT"  property="text" jdbcType="VARCHAR" />
+	<result column="FONT_SIZE"  property="font_size" jdbcType="VARCHAR" />
+	<result column="FONT_TYPEFACE"  property="font_typeface" jdbcType="VARCHAR" />
+	<result column="FONT_COLOR"  property="font_color" jdbcType="VARCHAR" />
+	<result column="TEXT_LEFT_HEIGHT"  property="text_left_height" jdbcType="VARCHAR" />
+	<result column="TEXT_TOP_HEIGHT"  property="text_top_height" jdbcType="VARCHAR" />
+	<result column="BORDER_WIDTH"  property="border_width" jdbcType="VARCHAR" />
+	<result column="BORDER_COLOR"  property="border_color" jdbcType="VARCHAR" />
+	<result column="CREATE_TIME"  property="create_time" jdbcType="TIMESTAMP" />
+	<result column="CREATE_USERID"  property="cretae_userid" jdbcType="VARCHAR" />
+	<result column="TYPE"  property="type" jdbcType="VARCHAR" />
+	<result column="ICON_WIDTH"  property="icon_width" jdbcType="VARCHAR" />
+	<result column="ICON_HEIGHT"  property="icon_height" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+	  ID ,NAME ,HEIGHT ,WIDTH ,BACKGROUND_COLOR ,ICON_NAME ,ICON_LEFT_HEIGHT ,ICON_TOP_HEIGHT ,TEXT ,
+	  FONT_SIZE ,FONT_TYPEFACE ,FONT_COLOR ,TEXT_LEFT_HEIGHT ,TEXT_TOP_HEIGHT ,BORDER_WIDTH ,BORDER_COLOR ,
+	  CREATE_TIME ,CREATE_USERID ,TYPE ,ICON_WIDTH ,ICON_HEIGHT
+  </sql>
+  
+  <insert id="saveData" parameterType="com.boco.eoms.picture_custom.customMode.model.PictureDetails">
+  	insert into eoms_picture_tool (<include refid="Base_Column_List" />)
+	values(#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, #{width,jdbcType=VARCHAR},
+			#{background_color,jdbcType=VARCHAR}, #{icon_name,jdbcType=VARCHAR}, #{icon_left_height,jdbcType=VARCHAR},
+			#{icon_top_height,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, #{font_size,jdbcType=VARCHAR}, #{font_typeface,jdbcType=VARCHAR},
+			#{font_color,jdbcType=VARCHAR}, #{text_left_height,jdbcType=VARCHAR}, #{text_top_height,jdbcType=VARCHAR}, #{border_width,jdbcType=VARCHAR},
+			#{border_color,jdbcType=VARCHAR}, sysdate(), #{cretae_userid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{icon_width,jdbcType=VARCHAR},
+			#{icon_height,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="findCount" resultType="java.lang.Integer" parameterType="HashMap">
+  	select count(*)
+  	from eoms_picture_tool
+  	where 1 = 1
+  	<if test="name != ''"> 
+ 		and name like '%${name}%'
+ 	</if>
+ 	<if test="type != ''">
+ 		and type = #{type,jdbcType=VARCHAR}
+ 	</if>
+ 	<if test="create_time != ''">
+ 		and DATE_FORMAT(create_time, '%Y-%m-%d') = '${create_time}'
+ 	</if>
+  </select>
+  
+  <select id="findDataByParam" resultMap="BaseResultMap" parameterType="HashMap">
+	select <include refid="Base_Column_List" />
+	from eoms_picture_tool
+	where 1 = 1
+	<if test="name!=null and name != ''">
+		and name like '%${name}%'
+	</if>
+	<if test="type!=null and type != ''">
+		and type = #{type,jdbcType=VARCHAR}
+	</if>
+	<if test="create_time!=null and create_time != ''">
+		and DATE_FORMAT(create_time, '%Y-%m-%d') = '${create_time}'
+	</if>
+	order by create_time desc
+	limit #{start},#{end}
+  </select>
+  
+  <select id="findData" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	 select <include refid="Base_Column_List" /> 
+  	 from eoms_picture_tool 
+  	 where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateData" parameterType="com.boco.eoms.picture_custom.customMode.model.PictureDetails">
+  	update eoms_picture_tool
+  	set name = #{name,jdbcType=VARCHAR},
+  		height = #{height,jdbcType=VARCHAR},
+  		width = #{width,jdbcType=VARCHAR},
+  		background_color = #{background_color,jdbcType=VARCHAR},
+  		icon_name = #{icon_name,jdbcType=VARCHAR},
+  		icon_left_height = #{icon_left_height,jdbcType=VARCHAR},
+  		icon_top_height = #{icon_top_height,jdbcType=VARCHAR},
+  		text = #{text,jdbcType=VARCHAR},
+  		font_size = #{font_size,jdbcType=VARCHAR},
+  		font_typeface = #{font_typeface,jdbcType=VARCHAR},
+  		font_color = #{font_color,jdbcType=VARCHAR},
+  		text_left_height = #{text_left_height,jdbcType=VARCHAR},
+  		text_top_height = #{text_top_height,jdbcType=VARCHAR},
+  		border_width = #{border_width,jdbcType=VARCHAR},
+  		border_color = #{border_color,jdbcType=VARCHAR},
+  		create_time = sysdate(),
+  		create_userid = #{cretae_userid,jdbcType=VARCHAR},
+  		type = #{type,jdbcType=VARCHAR},
+  		icon_width = #{icon_width,jdbcType=VARCHAR}, 
+  		icon_height = #{icon_height,jdbcType=VARCHAR}
+  	where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteData" parameterType="java.lang.String">
+  	delete from eoms_picture_tool where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+</mapper>
